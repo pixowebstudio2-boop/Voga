@@ -863,6 +863,15 @@ h1, h2, h3 { letter-spacing: -.01em; }
 @media (prefers-reduced-motion: reduce) { .svc-group { transition: none; } }
 </style>
 <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+<style>
+/* ===== Telefono: menu delle sezioni in alto, sotto la testata (in basso c'è il badge di Netlify) ===== */
+@media (max-width: 860px) {
+  .tabbar { top: calc(62px + env(safe-area-inset-top, 0px)); bottom: auto; box-shadow: 0 10px 30px rgba(0,0,0,.45); }
+  .hero .wrap { padding-bottom: 2rem; }
+  .site-foot { padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px)); }
+  .toast { bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px)); }
+}
+</style>
 </head><body>
 <div class="intro" aria-hidden="true"><svg viewBox="0 0 240 110" class="intro-logo"><g fill="none" stroke="var(--gold)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
     <path pathLength="1" d="M110 12c-2 3 2 5 0 8M117 10c-2 3 2 5 0 8M124 12c-2 3 2 5 0 8"/>
