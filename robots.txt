@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://voga.netlify.app/sitemap.xml
