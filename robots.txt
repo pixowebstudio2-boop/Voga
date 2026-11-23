@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# DOMINIO: quando il sito è online aggiungere la riga qui sotto con l'indirizzo vero
+# Sitemap: https://www.DOMINIO.it/sitemap.xml

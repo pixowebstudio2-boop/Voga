@@ -1,0 +1,149 @@
+/* Voga: nero e oro come il logo. Testata con logo e menu, pagine a blocchi alternati foto/testo, fascia orari con stato "aperto ora". */
+:root {
+  --ink: #111316;
+  --panel: #191c20;
+  --panel-2: #22262b;
+  --line: #2f343a;
+  --gold: #dcbd6a;
+  --gold-deep: #b8963f;
+  --text: #ece7dc;
+  --muted: #a8a397;
+  --open: #7fc79a;
+  --closed: #e08a7a;
+  --f-display: "Marcellus", "Times New Roman", Georgia, serif;
+  --f-body: "Jost", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--ink); color: var(--text); font-family: var(--f-body); font-size: 1.0625rem; line-height: 1.65; }
+img { max-width: 100%; display: block; }
+a { color: var(--gold); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 400; line-height: 1.1; margin: 0; text-wrap: balance; letter-spacing: .02em; }
+h1 { font-size: clamp(2.6rem, 7vw, 4.6rem); }
+h2 { font-size: clamp(2rem, 4.5vw, 3rem); }
+h3 { font-size: 1.5rem; }
+p { margin: 0; }
+.wrap { max-width: 72rem; margin: 0 auto; padding-inline: max(16px, 4vw); }
+.eyebrow { font-size: .78rem; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); }
+.rule { display: flex; align-items: center; gap: .9rem; }
+.rule::before, .rule::after { content: ""; height: 1px; background: var(--gold); opacity: .6; width: 2.5rem; }
+.lead { font-size: 1.15rem; color: var(--muted); max-width: 38rem; }
+
+/* Lingua: mostra solo la lingua attiva */
+html[data-lang="it"] .en, html[data-lang="en"] .it { display: none !important; }
+
+/* Testata */
+.site-head { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--ink) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.site-head .wrap { display: flex; align-items: center; gap: 1.5rem; padding-block: .6rem; }
+.brand { display: block; line-height: 0; }
+.logo { display: block; width: 120px; height: auto; }
+.menu { display: flex; gap: 1.4rem; margin-left: auto; font-size: .92rem; letter-spacing: .08em; text-transform: uppercase; }
+.menu a { color: var(--text); text-decoration: none; padding-block: .3rem; border-bottom: 1px solid transparent; }
+.menu a[aria-current="page"] { color: var(--gold); border-bottom-color: var(--gold); }
+@media (hover: hover) { .menu a:hover { color: var(--gold); border-bottom-color: var(--gold); } }
+.lang { background: none; border: 1px solid var(--gold); color: var(--gold); font: 600 .8rem var(--f-body); letter-spacing: .12em; padding: .45rem .7rem; border-radius: 999px; cursor: pointer; }
+@media (hover: hover) { .lang:hover { background: var(--gold); color: var(--ink); } }
+.menu-toggle { display: none; margin-left: auto; background: none; border: 1px solid var(--line); color: var(--text); border-radius: 8px; padding: .45rem .7rem; font: 500 .85rem var(--f-body); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+
+/* Hero */
+.hero { position: relative; min-height: 32rem; display: grid; align-items: end; overflow: hidden; }
+.hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 45%; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(17,19,22,.88) 0%, rgba(17,19,22,.55) 55%, rgba(17,19,22,.2) 100%), linear-gradient(180deg, transparent 55%, var(--ink) 100%); }
+.hero .wrap { position: relative; z-index: 1; padding-block: 5rem 3rem; display: grid; gap: 1.1rem; }
+.hero .lead { color: var(--text); opacity: .9; }
+.page-hero { padding-block: 3.5rem 1rem; display: grid; gap: 1rem; }
+
+/* Pulsanti */
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: .5rem; }
+.btn { display: inline-flex; align-items: center; gap: .55rem; padding: .8rem 1.3rem; border-radius: 999px; font-weight: 500; letter-spacing: .04em; text-decoration: none; border: 1px solid var(--gold); color: var(--gold); }
+.btn-solid { background: var(--gold); color: var(--ink); }
+@media (hover: hover) { .btn:hover { background: var(--gold-deep); border-color: var(--gold-deep); color: var(--ink); } }
+.btn svg { width: 1.1em; height: 1.1em; }
+
+/* Stato apertura */
+.status { display: inline-flex; align-items: center; gap: .55rem; font-size: .92rem; padding: .35rem .8rem; border-radius: 999px; background: var(--panel); border: 1px solid var(--line); width: fit-content; }
+.status .dot { width: .6rem; height: .6rem; border-radius: 50%; background: var(--muted); }
+.status[data-state="open"] .dot { background: var(--open); box-shadow: 0 0 0 4px color-mix(in srgb, var(--open) 25%, transparent); }
+.status[data-state="closed"] .dot { background: var(--closed); }
+
+/* Sezioni */
+section { padding-block: 4.5rem; }
+.section-head { display: grid; gap: .8rem; margin-bottom: 2.25rem; max-width: 44rem; }
+
+/* Tre servizi in home */
+.trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+.tile { position: relative; display: grid; grid-template-rows: auto 1fr; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; text-decoration: none; color: var(--text); }
+.tile .ph { aspect-ratio: 4 / 3; max-width: 100%; overflow: hidden; background: var(--panel-2); }
+.tile .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+@media (hover: hover) { .tile:hover .ph img { transform: scale(1.04); } }
+.tile .body { padding: 1.3rem 1.4rem 1.5rem; display: grid; gap: .5rem; align-content: start; }
+.tile .more { color: var(--gold); font-size: .9rem; letter-spacing: .08em; text-transform: uppercase; margin-top: .4rem; }
+.shell-mark { display: grid; place-items: center; height: 100%; font-family: var(--f-display); font-size: 4.5rem; color: var(--gold); background: radial-gradient(circle at 50% 40%, var(--panel-2), var(--ink)); }
+.shell-mark small { display: block; font-family: var(--f-body); font-size: .8rem; letter-spacing: .3em; color: var(--muted); text-align: center; }
+
+/* Orari */
+.hours { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.25rem; }
+.hours-card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 1.6rem; display: grid; gap: 1rem; align-content: start; }
+.hours-card dl { margin: 0; display: grid; grid-template-columns: 1fr auto; gap: .6rem 1rem; font-variant-numeric: tabular-nums; }
+.hours-card dt { color: var(--muted); }
+.hours-card dd { margin: 0; text-align: right; }
+.hours-card .big { font-family: var(--f-display); font-size: 2.4rem; color: var(--gold); line-height: 1; }
+
+/* Blocchi foto + testo */
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2.5rem; align-items: center; }
+.split + .split { margin-top: 4rem; }
+.split.rev > :first-child { order: 2; }
+.split .txt { display: grid; gap: 1rem; }
+.frame { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); aspect-ratio: 4 / 3; max-width: 100%; }
+.frame img { width: 100%; height: 100%; object-fit: cover; }
+.gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .75rem; }
+.gallery figure { margin: 0; border-radius: 10px; overflow: hidden; aspect-ratio: 1; max-width: 100%; border: 1px solid var(--line); }
+.gallery img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Elenco servizi */
+.services { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.services li { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 1.25rem 1.3rem; display: grid; gap: .35rem; align-content: start; }
+.services strong { font-family: var(--f-display); font-weight: 400; font-size: 1.25rem; color: var(--gold); }
+.services span { color: var(--muted); font-size: .96rem; }
+.note { margin-top: 1.5rem; color: var(--muted); font-size: .9rem; }
+
+/* Numeri grandi stazione */
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
+.fact { border-top: 1px solid var(--gold); padding-top: 1rem; display: grid; gap: .2rem; }
+.fact b { font-family: var(--f-display); font-weight: 400; font-size: 2.6rem; color: var(--gold); line-height: 1; }
+.fact span { color: var(--muted); }
+
+/* Contatti */
+.contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 2rem; align-items: stretch; }
+.contact-list { display: grid; gap: 1.5rem; align-content: start; }
+.contact-list .item { display: grid; gap: .3rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--line); }
+.contact-list .val { font-size: 1.3rem; }
+.map { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); min-height: 22rem; background: var(--panel); }
+.map::before { content: "Via Porta Napoli 162 · Castel di Sangro"; position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); font-size: .9rem; letter-spacing: .1em; text-transform: uppercase; }
+.map iframe { position: relative; }
+.map iframe { width: 100%; height: 100%; min-height: 22rem; border: 0; filter: grayscale(.4) invert(.9) hue-rotate(180deg); }
+
+/* Piè di pagina */
+.site-foot { border-top: 1px solid var(--line); padding-block: 2.5rem; color: var(--muted); font-size: .92rem; }
+.site-foot .wrap { display: grid; grid-template-columns: auto 1fr auto; gap: 2rem; align-items: center; }
+.site-foot .logo { width: 140px; }
+.site-foot a { color: var(--text); }
+
+@media (max-width: 860px) {
+  .menu-toggle { display: inline-block; }
+  .site-head .wrap { flex-wrap: wrap; }
+  .menu { display: none; order: 3; width: 100%; flex-direction: column; gap: .2rem; margin-left: 0; padding-block: .5rem; }
+  .site-head.open .menu { display: flex; }
+  .trio, .services, .facts { grid-template-columns: 1fr; }
+  .hours, .split, .contact-grid { grid-template-columns: 1fr; }
+  .split.rev > :first-child { order: 0; }
+  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .site-foot .wrap { grid-template-columns: 1fr; }
+  .hero { min-height: 26rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .tile .ph img { transition: none; }
+}
