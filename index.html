@@ -864,12 +864,16 @@ h1, h2, h3 { letter-spacing: -.01em; }
 </style>
 <link rel="icon" href="img/logo.svg" type="image/svg+xml">
 <style>
-/* ===== Telefono: menu delle sezioni in alto, sotto la testata (in basso c'è il badge di Netlify) ===== */
+/* ===== Telefono: menu in basso, alzato per lasciare libero il badge "Powered by Netlify" ===== */
 @media (max-width: 860px) {
-  .tabbar { top: calc(62px + env(safe-area-inset-top, 0px)); bottom: auto; box-shadow: 0 10px 30px rgba(0,0,0,.45); }
-  .hero .wrap { padding-bottom: 2rem; }
-  .site-foot { padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px)); }
-  .toast { bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px)); }
+  .tabbar { bottom: calc(58px + env(safe-area-inset-bottom, 0px)); }
+  .hero .wrap { padding-bottom: calc(9.5rem + env(safe-area-inset-bottom, 0px)); }
+  .site-foot { padding-bottom: calc(11rem + env(safe-area-inset-bottom, 0px)); }
+  .toast { bottom: calc(10rem + env(safe-area-inset-bottom, 0px)); }
+}
+@media (max-width: 599px) {
+  .hero .wrap { padding-bottom: calc(9rem + env(safe-area-inset-bottom, 0px)); }
+  .site-foot { padding-bottom: calc(8.5rem + env(safe-area-inset-bottom, 0px)); }
 }
 </style>
 </head><body>
